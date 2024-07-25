@@ -119,16 +119,23 @@ export const getUserFavoritesBooks = async (req: Request, res: Response) => {
 export const updateProfile = async (req: Request, res: Response) => {
   try {
     // 1. recuperar el id del usuario que hace la peticion a traves del token
-    console.log(req.tokenData.id, req.body)
     // 2. actualizar el usuario
+
+    const {name, email} = req.body
+    const fieldsToUpdate: {name?: string, email?: string} = {}
+
+    if (name) {
+      fieldsToUpdate.name = name
+    }
+    if (email) {
+      fieldsToUpdate.email = email
+    }
+
     const user = await User.update(
       {
         id: req.tokenData.id
       },
-      {
-        name: req.body.name,
-        email: req.body.email
-      }
+        fieldsToUpdate
     )
 
     res.json(
