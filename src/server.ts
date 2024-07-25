@@ -4,7 +4,7 @@ import { createAuthor, deleteAuthorById, getAllAuthors, updateAuthorById } from 
 import { createBook, deleteBookById, getAllBooks, updateBookById } from './controllers/book.controller';
 import { AppDataSource } from './database/db';
 import { login, register } from './controllers/auth.controller';
-import { getAllUsers, getUserFavoritesBooks, getUserProfile, updateProfile } from './controllers/user.controller';
+import { deleteUserById, getAllUsers, getUserFavoritesBooks, getUserProfile, updateProfile } from './controllers/user.controller';
 import { auth } from './middlewares/auth';
 import { isAdmin } from './middlewares/isAdmin';
 
@@ -53,6 +53,7 @@ app.get('/users', auth, isAdmin, getAllUsers)
 app.get('/profile', auth, getUserProfile)
 app.get('/users/favourites', auth, getUserFavoritesBooks)
 app.put('/profile', auth, updateProfile)
+app.delete('/users/:id', auth, isAdmin, deleteUserById)
 
 AppDataSource.initialize()
   .then(() => {

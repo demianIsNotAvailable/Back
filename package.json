@@ -11,7 +11,7 @@
     "db:migrate": "typeorm-ts-node-commonjs migration:run -d ./src/database/db.ts",
     "revert:migrations": "typeorm-ts-node-commonjs migration:revert -d ./src/database/db.ts",
     "db:drop": "npx typeorm-ts-node-commonjs schema:drop -d ./src/database/db.ts",
-    "db:seed": "npx ts-node ./src/database/seeders/dbSeeder.ts",
+    "seed": "npx ts-node ./src/database/seeders/dbSeeder.ts",
     "db:refresh": "npm run db:drop && npm run db:migrate && npm run db:seed"
   },
   "author": "datata",

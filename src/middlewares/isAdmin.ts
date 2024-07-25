@@ -2,11 +2,11 @@ import { NextFunction, Request, Response } from "express";
 
 export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
   try {
-    if(req.tokenData.role !== "admin") {
+    if(req.tokenData.role !== "super_admin") {
       return res.status(403).json(
         {
           success: false,
-          message: "you are not allowerd"
+          message: "you are not allowed"
         }
       )
     }
